@@ -20,12 +20,21 @@
       <SvgIcon style="width: 100px;" name="lv-4"></SvgIcon>
       <SvgIcon style="width: 100px;" name="notice-active"></SvgIcon>
     </div>
+    <div style="width: 300px;">
+      <span>{{ data }}</span>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Index',
+  async asyncData({ $axios }) {
+    const data = await $axios.$get('/profile')
+    return {
+      data,
+    }
+  },
   data() {
     return {}
   },

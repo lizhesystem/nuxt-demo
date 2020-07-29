@@ -1,14 +1,13 @@
 export default function ({ $axios, redirect }) {
-  $axios.defaults.timeout = 30000
-  $axios.interceptors.request.use((config) => {
-    // config.headers['X-Token'] = $cookies.get('token') || ''
-    // do something..
-    return config
+  $axios.onRequest((config) => {
+    // eslint-disable-next-line no-console
+    console.log('请求拦截')
   })
-  $axios.interceptors.response.use((response) => {
+  $axios.onResponse((response) => {
     // if (/^[4|5]/.test(response.status)) {
     //   return Promise.reject(response.statusText)
     // }
-    return response
+    console.log('响应拦截')
+    // return response
   })
 }

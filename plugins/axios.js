@@ -7,7 +7,7 @@ export default function ({ $axios, redirect }) {
     // if (/^[4|5]/.test(response.status)) {
     //   return Promise.reject(response.statusText)
     // }
+    // eslint-disable-next-line no-console
     console.log('响应拦截')
-    // return response
   })
 }

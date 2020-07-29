@@ -1,0 +1,29 @@
+@import "variable";
+
+// 横屏mixin
+@mixin container($padding: 40, $direction: row, $margin-bootom: 30, $wrap: wrap) {
+  display: flex;
+  flex-direction: $direction; // 默认横向
+  flex-wrap: $wrap; // 超出换行 or nowrap
+  justify-content: space-between;
+  min-width: $layout-content-min-width;
+  margin-bottom: $margin-bootom + px;
+  padding: 0 $padding + px;
+}
+
+// 文本截取(单行、多行,截取宽度)
+@mixin ellipsis($line: 1, $substract: 0) {
+  width: 100% - $substract;
+  overflow: hidden;
+
+  @if $line==1 {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+  }
+}

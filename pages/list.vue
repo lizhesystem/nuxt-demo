@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  middleware: 'auth',
   name: 'List',
   components: {},
   data() {

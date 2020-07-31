@@ -30,7 +30,7 @@
 export default {
   name: 'Index',
   async asyncData({ $axios }) {
-    const data = await $axios.$get('/profile')
+    const data = await $axios.$get('/zdservercore-ims/zdservercoreImsAdvertisement/getById/1')
     return {
       data,
     }

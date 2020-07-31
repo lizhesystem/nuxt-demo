@@ -15,6 +15,13 @@ export default {
     // host: '0.0.0.0', // default: localhost,
   },
   /*
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+  axios: {
+    baseURL: 'http://localhost:8080',
+  },
+  /*
    ** Router configuration
    */
   router: {
@@ -57,7 +64,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['~/plugins/global-injecter.js', '~/plugins/axios.js'],
+  plugins: ['~/plugins/global-injecter.js', { src: '@/plugins/axios', mode: 'server' }],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -77,6 +84,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     // https://www.npmjs.com/package/@nuxtjs/svg-sprite
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     '@nuxtjs/style-resources',
     '@nuxtjs/svg-sprite',
   ],
@@ -86,12 +94,18 @@ export default {
   svgSprite: {
     input: '~/assets/svg/',
   },
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {
-    baseURL: 'http://localhost:3000',
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/zdservercore-auth/token', method: 'post', propertyName: 'token' },
+          logout: { url: '/api/auth/logout', method: 'get' },
+          user: { url: '/user/getUserInfo', method: 'get', propertyName: 'token' },
+        },
+        // tokenRequired: true,
+        // tokenType: 'bearer'
+      },
+    },
   },
   /*
    ** Build configuration

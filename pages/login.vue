@@ -6,7 +6,7 @@
   <div class="login-pancel">
     <h1 class="title">登录</h1>
     <el-input
-      v-model="loginInfo.account"
+      v-model="loginInfo.username"
       class="phoneNumber-input"
       placeholder="请输入手机号或邮箱"
       maxlength="64"
@@ -34,40 +34,23 @@ export default {
   data() {
     return {
       loginInfo: {
-        account: '',
+        username: '',
         password: '',
       },
     }
   },
   methods: {
     async login() {
-      if (this.loginInfo.account.trim() === '') {
+      if (this.loginInfo.username.trim() === '') {
         this.$message.warning('请输入账号')
         return
       }
       if (this.loginInfo.password.trim() === '') {
         this.$message.warning('请输入密码')
       }
-      try {
-        const resource = await this.$auth.loginWith('local', { data: this.loginInfo })
-        console.log(resource)
-      } catch (err) {
-        console.log(err)
-      }
-      // const res = await this.ctx.$api.loginAuth({
-      //   phoneNumber: this.phoneNumber,
-      //   password: this.password,
-      // })
-
-      // 登录成功
-      // if (res.token) {
-      //   this.ctx.$utils.setAuthInfo(this.ctx, res)
-      //   this.resolve()
-      //   location.reload()
-      //   this.hideModal()
-      // } else {
-      //   this.$message.error('登录失败，请重试')
-      // }
+      // TODO: 自己实现登录
+      const resource = await this.$axios.$post(this.loginInfo)
+      console.log(resource)
     },
   },
 }

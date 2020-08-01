@@ -19,7 +19,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://localhost:8080',
+    baseURL: 'http://127.0.0.1:7079',
   },
   /*
    ** Router configuration
@@ -84,7 +84,6 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     // https://www.npmjs.com/package/@nuxtjs/svg-sprite
     '@nuxtjs/axios',
-    '@nuxtjs/auth',
     '@nuxtjs/style-resources',
     '@nuxtjs/svg-sprite',
   ],
@@ -93,19 +92,6 @@ export default {
   },
   svgSprite: {
     input: '~/assets/svg/',
-  },
-  auth: {
-    strategies: {
-      local: {
-        endpoints: {
-          login: { url: '/zdservercore-auth/token', method: 'post', propertyName: 'token' },
-          logout: { url: '/api/auth/logout', method: 'get' },
-          user: { url: '/user/getUserInfo', method: 'get', propertyName: 'token' },
-        },
-        // tokenRequired: true,
-        // tokenType: 'bearer'
-      },
-    },
   },
   /*
    ** Build configuration

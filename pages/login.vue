@@ -31,6 +31,9 @@
 export default {
   name: 'Login',
   components: {},
+  asyncData(context) {
+    console.log(context)
+  },
   data() {
     return {
       loginInfo: {
@@ -49,8 +52,12 @@ export default {
         this.$message.warning('请输入密码')
       }
       // TODO: 自己实现登录
-      const resource = await this.$axios.$post(this.loginInfo)
-      console.log(resource)
+      const { data: res } = await this.$api.login(this.loginInfo)
+      if (res.code === 500) return this.$message.error(res.msg)
+      if (res.token) {
+        this.$cookies.set('token', res.token)
+        this.$router.push('/')
+      }
     },
   },
 }

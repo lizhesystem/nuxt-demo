@@ -21,7 +21,7 @@
       <SvgIcon style="width: 100px;" name="notice-active"></SvgIcon>
     </div>
     <div style="width: 300px;">
-      <span>{{ data }}</span>
+      <span></span>
     </div>
   </div>
 </template>
@@ -29,12 +29,12 @@
 <script>
 export default {
   name: 'Index',
-  async asyncData({ $axios }) {
-    const data = await $axios.$get('/zdservercore-ims/zdservercoreImsAdvertisement/getById/1')
-    return {
-      data,
-    }
-  },
+  // async asyncData({ $axios }) {
+  //   const data = await $axios.$get('/zdservercore-ims/zdservercoreImsAdvertisement/getById/1')
+  //   return {
+  //     data,
+  //   }
+  // },
   data() {
     return {}
   },

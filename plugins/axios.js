@@ -1,7 +1,7 @@
-export default function ({ $axios, redirect }) {
+export default function ({ app: { $axios, $cookies, redirect } }) {
   $axios.onRequest((config) => {
-    // eslint-disable-next-line no-console
-    console.log('请求拦截')
+    config.headers['X-Token'] = $cookies.get('token') || ''
+    return config
   })
   $axios.onResponse((response) => {
     // if (/^[4|5]/.test(response.status)) {

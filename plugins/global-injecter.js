@@ -16,6 +16,6 @@ Vue.use(elComponentsRegister)
 // Vue.filter('formatTime', f => utils.formatTime(f))
 
 // 导出 inject 注入后可以使用this.$xxx来调用
-export default (context, inject) => {
+export default function (context, inject) {
   inject('utils', utils)
 }

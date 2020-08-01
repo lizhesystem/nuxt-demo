@@ -19,7 +19,16 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://127.0.0.1:7079',
+    // baseURL: 'http://127.0.0.1:7079',
+    proxy: true,
+  },
+  proxy: {
+    '/api': {
+      target: 'http://127.0.0.1:7079',
+      pathRewrite: {
+        '^/api': '/',
+      },
+    },
   },
   /*
    ** Router configuration
@@ -64,7 +73,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['~/plugins/global-injecter.js', { src: '@/plugins/axios', mode: 'server' }],
+  plugins: ['~/plugins/axios.js', '~/plugins/request.js', '~/plugins/api.js', '~/plugins/global-injecter.js'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -84,7 +93,9 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     // https://www.npmjs.com/package/@nuxtjs/svg-sprite
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxtjs/style-resources',
+    'cookie-universal-nuxt',
     '@nuxtjs/svg-sprite',
   ],
   styleResources: {

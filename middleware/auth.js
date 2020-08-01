@@ -2,7 +2,8 @@ export default function (context) {
   const { app } = context
   const cookiesToken = app.$cookies.get('token')
   if (!cookiesToken) {
-    // TODO: 没有token 跳转到 需要跳转的页面
+    context.redirect('/login')
+    // TODO: 没有token 跳转到 需要登录页
     // 每次跳转路由 验证登录状态是否过期
     // return app.$api.isAuth().then((res) => {
     //   if (res.s === 1) {
